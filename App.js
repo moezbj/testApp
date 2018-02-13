@@ -1,28 +1,30 @@
-import React from 'react'
-import {Text,View,Content,StyleSheet} from 'react-native'
-import Header from './src/components/Header'
-import ButtonsMenu from './src/components/ButtonsMenu'
-import Form from './src/components/Form'
+import React from 'react';
+import { Text, View, Content, StyleSheet } from 'react-native';
+import Header from './src/components/Header';
+import ButtonsMenu from './src/components/ButtonsMenu';
+import Form from './src/components/Form';
 
 export default class App extends React.Component {
-  render(){
+  render() {
     return (
       <View style={styles.container}>
-        <Header/>
-        <ButtonsMenu />
-        <Form style={styles.input}/>
+        <Header />
+        <ButtonsMenu style={styles.btn} />
+        <Form style={styles.input} />
       </View>
-    )
+    );
   }
 }
 
 const styles = StyleSheet.create({
-    container:{
-      flex: 1,
-      backgroundColor:"#51868a"
-
-    },
-    input:{
-      paddingTop:30
-    }
-  })
+  container: {
+    flex: 1,
+    backgroundColor: '#51868a'
+  },
+  btn: {
+    margin: 30
+  },
+  input: {
+    padding: 5
+  }
+});
