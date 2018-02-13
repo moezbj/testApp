@@ -20,9 +20,9 @@ export default class Header extends React.Component {
           <SvgUri width="60" height="60" source={require('../images/Logo.svg')} />
         </View>
         <View style={styles.centerFlex} />
-
-        <TouchableOpacity style={styles.btn} onPress={() => this.show()} />
-        {this.state.isVisible && <View style={styles.nav} />}
+        <TouchableOpacity style={styles.btn} onPress={() => this.show()}>
+          {this.state.isVisible && <navBar style={styles.nav} />}
+        </TouchableOpacity>
       </View>
     );
   }
@@ -43,10 +43,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#253748',
     height: 30
   },
-  nav: {
-    backgroundColor: 'black',
-    borderWidth: 100
-  },
+
   centerFlex: {
     flex: 1
   }

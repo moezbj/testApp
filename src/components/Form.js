@@ -1,20 +1,33 @@
 import React, { Component } from 'react';
-import { AppRegistry, TextInput, StyleSheet, View, TouchableOpacity } from 'react-native';
-
-import DateTime from './DateTime';
+import {
+  AppRegistry,
+  TextInput,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  Text,
+  Icon
+} from 'react-native';
+import DatePicker from 'react-native-datepicker';
 
 export default class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      FylingFrom: 'Flying From',
-      FylingTo: 'Flying To'
+      FylingFrom: '',
+      FylingTo: ''
     };
-    this.onChange = this.onChange.bind(this);
+    this.onChangeTo = this.onChangeTo.bind(this);
+    this.onChangeFrom = this.onChangeFrom.bind(this);
   }
-  onChange(newText) {
+  onChangeFrom(newText) {
     this.setState({
-      text: newText
+      FylingFrom: newText
+    });
+  }
+  onChangeTo(newText) {
+    this.setState({
+      FylingTo: newText
     });
   }
 
@@ -23,20 +36,36 @@ export default class Form extends Component {
       <View style={styles.container}>
         <TextInput
           style={styles.input}
-          onChangeText={this.onChange}
+          onChangeText={this.onChangeFrom}
           value={this.state.FylingFrom}
+          placeholder="Flying From"
+          placeholderTextColor="white"
         />
-        <TextInput style={styles.input} onChangeText={this.onChange} value={this.state.FylingTo} />
-        <View style={styles.date}>
-          <TouchableOpacity style={styles.depart}>
-            <DateTime />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.return}>
-            <DateTime />
-          </TouchableOpacity>
-        </View>
 
-        <TextInput style={styles.input} onChangeText={this.onChange} value={this.state.text} />
+        <TextInput
+          style={styles.input}
+          onChangeText={this.onChangeTo}
+          value={this.state.FylingTo}
+          placeholder="Flying to"
+          placeholderTextColor="white"
+        />
+
+        <View style={styles.date}>
+          <TouchableOpacity style={styles.depart} onPress={() => this.datePicker.onPressDate()} />
+          <TouchableOpacity style={styles.return} onPress={() => this.datePicker.onPressDate()} />
+        </View>
+        <DatePicker
+          ref={ref => (this.datePicker = ref)}
+          style={styles.datePicker}
+          date={this.state.date}
+          mode="date"
+          format="YYYY-MM-DD"
+          confirmBtnText="Confirm"
+          cancelBtnText="Cancel"
+          showIcon={false}
+          hideText
+          onDateChange={this.onDateChange}
+        />
       </View>
     );
   }
@@ -44,7 +73,6 @@ export default class Form extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#51868a'
   },
   input: {
@@ -60,11 +88,16 @@ const styles = StyleSheet.create({
     flex: 40,
     backgroundColor: '#085373',
     margin: 5,
-    padding: 5
+    height: 40
   },
   return: {
     flex: 40,
     backgroundColor: '#085373',
-    margin: 5
+    margin: 5,
+    height: 40
+  },
+  DatePicker: {
+    opacity: 0,
+    width: 0
   }
 });
