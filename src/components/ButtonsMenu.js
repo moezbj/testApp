@@ -1,52 +1,91 @@
-import React from 'react'
-import {View,StyleSheet,Button,Text,TouchableOpacity} from 'react-native'
+import React from 'react';
+import { View, StyleSheet, Button, Text, TouchableOpacity, TouchableHighlight } from 'react-native';
 
 export default class ButtonsMenu extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
+    this.state = {
+      oneway: false,
+      roundtrip: false,
+      multiple: false
+    };
+    this.oneWay = this.oneWay.bind(this);
+    this.roundTrip = this.roundTrip.bind(this);
+    this.multiple = this.multiple.bind(this);
   }
-  render(){
+  oneWay() {
+    this.setState({
+      oneway: true,
+      roundtrip: false,
+      multiple: false
+    });
+  }
+  roundTrip() {
+    this.setState({
+      oneway: false,
+      roundtrip: true,
+      multiple: false
+    });
+  }
+  multiple() {
+    this.setState({
+      oneway: false,
+      roundtrip: false,
+      multiple: true
+    });
+  }
+
+  render() {
     return (
       <View style={styles.main}>
+        <TouchableHighlight
+          onPress={this.oneWay}
+          style={[styles.btn1, this.state.oneway ? { backgroundColor: 'orange' } : {}]}
+          underlayColor={'orange'}
+        >
+          <Text style={styles.textStyle}>One Way</Text>
+        </TouchableHighlight>
 
-      <View style={styles.btn1}>
-      <TouchableOpacity><Text>One way</Text></TouchableOpacity>
-      </View>
+        <TouchableHighlight
+          onPress={this.roundTrip}
+          style={[styles.btn2, this.state.roundtrip ? { backgroundColor: 'orange' } : {}]}
+          underlayColor={'orange'}
+        >
+          <Text style={styles.textStyle}>Round Trip</Text>
+        </TouchableHighlight>
 
-      <View style={styles.btn2}>
-      <TouchableOpacity><Text>Round Trip</Text></TouchableOpacity>
+        <TouchableHighlight
+          onPress={this.multiple}
+          style={[styles.btn3, this.state.multiple ? { backgroundColor: 'orange' } : {}]}
+          underlayColor={'orange'}
+        >
+          <Text style={styles.textStyle}>Multiple</Text>
+        </TouchableHighlight>
       </View>
-
-      <View style={styles.btn3} >
-        <TouchableOpacity><Text>Multiple Destination</Text></TouchableOpacity>
-      </View>
-
-      </View>
-   )
+    );
   }
 }
 const styles = StyleSheet.create({
-    main:{
-      flexDirection:"row",
-      justifyContent:"center",
-    },
-    btn1:{
-      borderRadius:5,
-      backgroundColor:"white",
-      margin:3,
-      padding:5
-    },
-  btn2:{
-    borderRadius:5,
-    backgroundColor:"white",
-    margin:3,
-    padding:5
+  main: {
+    flexDirection: 'row',
+    justifyContent: 'center'
   },
-  btn3:{
-    borderRadius:5,
-    backgroundColor:"white",
-    margin:3,
-    padding:5
-
+  btn1: {
+    borderRadius: 5,
+    backgroundColor: 'white',
+    margin: 3,
+    padding: 5
+  },
+  btn2: {
+    borderRadius: 5,
+    backgroundColor: 'white',
+    margin: 3,
+    padding: 5
+  },
+  btn3: {
+    borderRadius: 5,
+    backgroundColor: 'white',
+    margin: 3,
+    padding: 5
   }
-})
+});

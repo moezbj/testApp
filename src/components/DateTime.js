@@ -28,7 +28,6 @@ export default class DateTime extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#51868a'
   },
   DatePicker: {

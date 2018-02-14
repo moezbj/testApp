@@ -18,7 +18,6 @@ export default class App extends React.Component {
     };
   }
   show = () => {
-    console.log('heyy');
     this.setState({
       isVisible: !this.state.isVisible
     });

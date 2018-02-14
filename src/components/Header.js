@@ -14,7 +14,9 @@ export default class Header extends React.Component {
           <SvgUri width="60" height="60" source={require('../images/Logo.svg')} />
         </View>
         <View style={styles.centerFlex} />
-        <TouchableOpacity style={styles.btn} onPress={this.props.show} />
+        <View style={styles.nav}>
+          <TouchableOpacity style={styles.btn} onPress={this.props.show} />
+        </View>
       </View>
     );
   }
@@ -29,12 +31,18 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     flex: 1
   },
-  btn: {
+  nav: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'green',
     height: 60
+  },
+  btn: {
+    alignItems: 'center',
+    height: 20,
+    width: 20,
+    backgroundColor: 'red'
   },
   centerFlex: {
     flex: 1
