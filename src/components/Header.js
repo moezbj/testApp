@@ -1,18 +1,12 @@
 import React from 'react';
-import { View, StyleSheet, Button, Text, Icon, Image, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Button, Text, Image, TouchableOpacity } from 'react-native';
 import SvgUri from 'react-native-svg-uri';
+import NavBar from './NavBar';
 export default class Header extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isVisible: false
-    };
   }
-  show = () => {
-    this.setState({
-      isVisible: !this.state.isVisible
-    });
-  };
+
   render() {
     return (
       <View style={styles.mainView}>
@@ -20,9 +14,7 @@ export default class Header extends React.Component {
           <SvgUri width="60" height="60" source={require('../images/Logo.svg')} />
         </View>
         <View style={styles.centerFlex} />
-        <TouchableOpacity style={styles.btn} onPress={() => this.show()}>
-          {this.state.isVisible && <navBar style={styles.nav} />}
-        </TouchableOpacity>
+        <TouchableOpacity style={styles.btn} onPress={this.props.show} />
       </View>
     );
   }
@@ -40,10 +32,10 @@ const styles = StyleSheet.create({
   btn: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#253748',
-    height: 30
+    alignItems: 'center',
+    backgroundColor: 'green',
+    height: 60
   },
-
   centerFlex: {
     flex: 1
   }

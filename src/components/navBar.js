@@ -1,8 +1,11 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, Dimensions } from 'react-native';
 
-export default class navBar extends React.Component {
+const { width, height } = Dimensions.get('window');
+
+export default class NavBar extends React.Component {
   render() {
+    console.log(width, height);
     return (
       <View style={styles.container}>
         <Text>heey</Text>
@@ -13,12 +16,11 @@ export default class navBar extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#51868a'
-  },
-  nav: {
-    backgroundColor: 'black',
-    borderWidth: 100,
-    position: 'absolute'
+    backgroundColor: '#51868a',
+    position: 'absolute',
+    top: 62,
+    right: 0,
+    width: width / 2,
+    height: height / 2 - 60
   }
 });

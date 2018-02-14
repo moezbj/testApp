@@ -1,13 +1,5 @@
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  TextInput,
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  Text,
-  Icon
-} from 'react-native';
+import { AppRegistry, TextInput, StyleSheet, View, TouchableOpacity, Text } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 
 export default class Form extends Component {
@@ -40,6 +32,7 @@ export default class Form extends Component {
           value={this.state.FylingFrom}
           placeholder="Flying From"
           placeholderTextColor="white"
+          underlineColorAndroid="transparent"
         />
 
         <TextInput
@@ -48,6 +41,7 @@ export default class Form extends Component {
           value={this.state.FylingTo}
           placeholder="Flying to"
           placeholderTextColor="white"
+          underlineColorAndroid="transparent"
         />
 
         <View style={styles.date}>

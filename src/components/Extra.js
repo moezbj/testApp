@@ -24,6 +24,7 @@ export default class Extra extends React.Component {
             value={this.state.text}
             placeholder="Adulte 1,Child 0"
             placeholderTextColor="white"
+            underlineColorAndroid="transparent"
           />
         </TouchableOpacity>
       </View>

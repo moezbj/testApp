@@ -24,6 +24,7 @@ export default class ClassType extends React.Component {
             value={this.state.text}
             placeholder="Economy"
             placeholderTextColor="white"
+            underlineColorAndroid="transparent"
           />
         </TouchableOpacity>
       </View>
