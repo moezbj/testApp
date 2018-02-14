@@ -2,45 +2,54 @@ import React from 'react';
 import { Text, View, Content, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 
 export default class Extra extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      airLine: '',
+      direct: ''
+    };
+  }
   render() {
     return (
       <View style={styles.main}>
-        <TouchableOpacity style={styles.airline}>
-          <Text style={styles.text}> Preferd Airline </Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.flight}>
-          <Text style={styles.text}> Direct Flight </Text>
-        </TouchableOpacity>
+        <TextInput
+          style={styles.airLine}
+          onChangeText={this.onChangeFrom}
+          value={this.state.airLine}
+          placeholder="Preferd AirLine"
+          placeholderTextColor="blue"
+          underlineColorAndroid="transparent"
+        />
+        <TextInput
+          style={styles.direct}
+          onChangeText={this.onChangeFrom}
+          value={this.state.direct}
+          placeholder="Direct Flight"
+          placeholderTextColor="blue"
+          underlineColorAndroid="transparent"
+        />
       </View>
     );
   }
 }
-
 const styles = StyleSheet.create({
   main: {
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-  airline: {
-    flex: 40,
-    backgroundColor: 'white',
-    margin: 5,
-    height: 40,
-    borderRadius: 5,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  flight: {
-    flex: 40,
-    backgroundColor: 'white',
-    margin: 5,
-    height: 40,
-    borderRadius: 5,
-    alignItems: 'center',
-    justifyContent: 'center'
+    flexDirection: 'row'
   },
   text: {
     fontSize: 18,
     color: 'blue'
+  },
+  airLine: {
+    flex: 40,
+    height: 40,
+    margin: 5,
+    backgroundColor: 'white'
+  },
+  direct: {
+    flex: 40,
+    height: 40,
+    margin: 5,
+    backgroundColor: 'white'
   }
 });

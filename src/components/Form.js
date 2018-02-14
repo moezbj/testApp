@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { AppRegistry, TextInput, StyleSheet, View, TouchableOpacity, Text } from 'react-native';
 import DatePicker from 'react-native-datepicker';
+import SvgUri from 'react-native-svg-uri';
 
 export default class Form extends Component {
   constructor(props) {
