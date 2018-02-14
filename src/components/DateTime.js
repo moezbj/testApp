@@ -17,8 +17,6 @@ export default class DateTime extends React.Component {
           format="YYYY-MM-DD"
           confirmBtnText="Confirm"
           cancelBtnText="Cancel"
-          showIcon={false}
-          hideText
           onDateChange={this.onDateChange}
         />
       </View>

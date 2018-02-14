@@ -68,7 +68,8 @@ export default class ButtonsMenu extends React.Component {
 const styles = StyleSheet.create({
   main: {
     flexDirection: 'row',
-    justifyContent: 'center'
+    justifyContent: 'space-around',
+    margin: 20
   },
   btn1: {
     borderRadius: 5,
@@ -87,5 +88,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     margin: 3,
     padding: 5
+  },
+  textStyle: {
+    fontSize: 17
   }
 });

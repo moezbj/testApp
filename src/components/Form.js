@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { AppRegistry, TextInput, StyleSheet, View, TouchableOpacity, Text } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import SvgUri from 'react-native-svg-uri';
-
 export default class Form extends Component {
   constructor(props) {
     super(props);
@@ -46,21 +45,22 @@ export default class Form extends Component {
         />
 
         <View style={styles.date}>
-          <TouchableOpacity style={styles.depart} onPress={() => this.datePicker.onPressDate()} />
+          <TouchableOpacity style={styles.depart} onPress={() => this.datePicker.onPressDate()}>
+            <DatePicker
+              ref={ref => (this.datePicker = ref)}
+              style={styles.datePicker}
+              date={this.state.date}
+              mode="date"
+              format="YYYY-MM-DD"
+              confirmBtnText="Confirm"
+              cancelBtnText="Cancel"
+              showIcon={false}
+              hideText
+              onDateChange={this.onDateChange}
+            />
+          </TouchableOpacity>
           <TouchableOpacity style={styles.return} onPress={() => this.datePicker.onPressDate()} />
         </View>
-        <DatePicker
-          ref={ref => (this.datePicker = ref)}
-          style={styles.datePicker}
-          date={this.state.date}
-          mode="date"
-          format="YYYY-MM-DD"
-          confirmBtnText="Confirm"
-          cancelBtnText="Cancel"
-          showIcon={false}
-          hideText
-          onDateChange={this.onDateChange}
-        />
       </View>
     );
   }

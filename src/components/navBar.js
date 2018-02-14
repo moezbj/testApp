@@ -55,20 +55,21 @@ const styles = StyleSheet.create({
     marginLeft: 10
   },
   textkwd: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignSelf: 'center',
     color: 'white',
     fontSize: 16
   },
   lang: {
     backgroundColor: 'transparent',
     alignItems: 'flex-start',
-    marginLeft: 16
+    marginLeft: 16,
+    marginBottom: 10
   },
   text: {
     backgroundColor: '#0675a3',
     padding: 7,
     borderRadius: 5,
+    fontSize: 20,
     color: 'white',
     fontWeight: 'bold'
   },
