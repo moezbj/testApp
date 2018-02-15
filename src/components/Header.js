@@ -1,10 +1,13 @@
 import React from 'react';
 import { View, StyleSheet, Button, Text, Image, TouchableOpacity } from 'react-native';
 import SvgUri from 'react-native-svg-uri';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 import NavBar from './NavBar';
 export default class Header extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {};
   }
 
   render() {
@@ -15,7 +18,13 @@ export default class Header extends React.Component {
         </View>
         <View style={styles.centerFlex} />
         <View style={styles.nav}>
-          <TouchableOpacity style={styles.btn} onPress={this.props.show} />
+          <TouchableOpacity
+            style={[styles.btn, this.props.color ? { backgroundColor: 'orange' } : {}]}
+            underlayColor={'orange'}
+            onPress={this.props.show}
+          >
+            <Icon name="home" color="white" size={20} />
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -40,8 +49,13 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   btn: {
-    height: 20,
-    width: 20,
-    backgroundColor: 'red'
+    height: 40,
+    width: 40,
+    backgroundColor: '#253748',
+    borderRadius: 6,
+    borderColor: 'white',
+    borderWidth: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });

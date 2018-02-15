@@ -27,12 +27,14 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isVisible: false
+      isVisible: false,
+      color: false
     };
   }
   show = () => {
     this.setState({
-      isVisible: !this.state.isVisible
+      isVisible: !this.state.isVisible,
+      color: true
     });
   };
   onPressDate = () => {
@@ -43,7 +45,7 @@ export default class App extends React.Component {
       <View style={styles.container}>
         <KeyboardAvoidingView behavior="padding">
           <View style={styles.main}>
-            <Header show={this.show} />
+            <Header show={this.show} color={this.state.color} />
             <ButtonsMenu style={styles.btn} />
             <Form style={styles.input} onPressDate={this.onPressDate} />
             <ClassType style={styles.class} />
