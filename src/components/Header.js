@@ -19,8 +19,8 @@ export default class Header extends React.Component {
         <View style={styles.centerFlex} />
         <View style={styles.nav}>
           <TouchableOpacity
-            style={[styles.btn, this.props.color ? { backgroundColor: 'orange' } : {}]}
-            underlayColor={'orange'}
+            style={[styles.btn, this.props.color ? { backgroundColor: '#337bbe' } : {}]}
+            underlayColor={'#337bbe'}
             onPress={this.props.show}
           >
             <Icon name="menu" color="white" size={20} />
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   btn: {
     height: 40,
     width: 40,
-    backgroundColor: '#253748',
+    backgroundColor: '#f15c24',
     borderRadius: 6,
     borderColor: 'white',
     borderWidth: 1,

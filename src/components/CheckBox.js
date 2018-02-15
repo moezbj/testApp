@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Text, TouchableHighlight, View, StyleSheet } from 'react-native';
-
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class Checkbox extends Component {

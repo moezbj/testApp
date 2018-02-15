@@ -37,13 +37,16 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#085373',
     position: 'absolute',
-    top: 62,
+    top: 60,
     right: 0,
     width: width / 2,
-    height: height / 2 - 60
+    height: height / 2 - 60,
+    borderTopColor: 'white',
+    borderTopWidth: 1
   },
   country: {
     flexDirection: 'row',
+    paddingTop: 10,
     marginBottom: 18,
     paddingLeft: 10
   },

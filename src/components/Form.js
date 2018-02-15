@@ -78,9 +78,6 @@ export default class Form extends Component {
   }
 }
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#51868a'
-  },
   input: {
     height: 40,
     backgroundColor: '#085373',

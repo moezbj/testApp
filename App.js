@@ -6,8 +6,10 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   Dimensions,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  ImageBackground
 } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
@@ -32,6 +34,8 @@ export default class App extends React.Component {
       flightDate: '',
       flightDateReturn: ''
     };
+    this.show = this.show.bind(this);
+    this.close = this.close.bind(this);
   }
   show = () => {
     this.setState({
@@ -39,7 +43,11 @@ export default class App extends React.Component {
       color: !this.state.color
     });
   };
-
+  close() {
+    this.setState({
+      isVisible: false
+    });
+  }
   onPressDate = (id1, id2) => {
     this.datePicker.onPressDate();
     this.setState({
@@ -59,49 +67,51 @@ export default class App extends React.Component {
       });
     }
   };
-
   render() {
     return (
-      <View style={styles.container}>
-        <KeyboardAvoidingView behavior="padding">
-          <View style={styles.main}>
-            <Header show={this.show} color={this.state.color} />
-            <ButtonsMenu style={styles.btn} />
-            <Form
-              style={styles.input}
-              onPressDate={this.onPressDate}
-              flightDate={this.state.flightDate}
-              flightDateReturn={this.state.flightDateReturn}
-            />
-            <ClassType style={styles.class} />
-            <Extra style={styles.extra} />
-            <FlightType />
-            <Search style={styles.search} />
-            <PaymentLogo />
-          </View>
-          {this.state.isVisible && <NavBar />}
-          <View>
-            <DatePicker
-              ref={ref => (this.datePicker = ref)}
-              date={this.state.date}
-              mode="date"
-              format="YYYY-MM-DD"
-              confirmBtnText="Confirm"
-              cancelBtnText="Cancel"
-              showIcon
-              onDateChange={this.onDateChange}
-            />
-          </View>
-        </KeyboardAvoidingView>
-      </View>
+      <TouchableWithoutFeedback onPress={this.close}>
+        <View style={styles.container}>
+          <ImageBackground source={require('./src/images/bg.jpg')} style={styles.container}>
+            <KeyboardAvoidingView behavior="padding">
+              <View style={styles.main}>
+                <Header show={this.show} color={this.state.color} />
+                <ButtonsMenu style={styles.btn} />
+                <Form
+                  style={styles.input}
+                  onPressDate={this.onPressDate}
+                  flightDate={this.state.flightDate}
+                  flightDateReturn={this.state.flightDateReturn}
+                />
+                <ClassType style={styles.class} />
+                <Extra style={styles.extra} />
+                <FlightType />
+                <Search style={styles.search} />
+                <PaymentLogo />
+              </View>
+              {this.state.isVisible && <NavBar />}
+              <View>
+                <DatePicker
+                  ref={ref => (this.datePicker = ref)}
+                  date={this.state.date}
+                  mode="date"
+                  format="YYYY-MM-DD"
+                  confirmBtnText="Confirm"
+                  cancelBtnText="Cancel"
+                  showIcon
+                  onDateChange={this.onDateChange}
+                />
+              </View>
+            </KeyboardAvoidingView>
+          </ImageBackground>
+        </View>
+      </TouchableWithoutFeedback>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#51868a'
+    flex: 1
   },
   btn: {
     padding: 5
@@ -121,5 +131,10 @@ const styles = StyleSheet.create({
   main: {
     width,
     height
+  },
+  backgroundImage: {
+    flex: 1,
+    width: null,
+    height: null
   }
 });
