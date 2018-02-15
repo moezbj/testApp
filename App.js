@@ -36,9 +36,7 @@ export default class App extends React.Component {
   show = () => {
     this.setState({
       isVisible: !this.state.isVisible,
-      color: true,
-      id1: 0,
-      id2: 0
+      color: !this.state.color
     });
   };
 
@@ -74,7 +72,6 @@ export default class App extends React.Component {
               onPressDate={this.onPressDate}
               flightDate={this.state.flightDate}
               flightDateReturn={this.state.flightDateReturn}
-              id={this.state.id}
             />
             <ClassType style={styles.class} />
             <Extra style={styles.extra} />

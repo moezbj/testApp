@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View, Content, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import CheckBox from './CheckBox';
 export default class FlightType extends React.Component {
   constructor(props) {
     super(props);
@@ -36,14 +37,10 @@ export default class FlightType extends React.Component {
           />
         </View>
         <View style={styles.direct}>
-          <TextInput
-            style={styles.input}
-            onChangeText={this.onChangeDirect}
-            value={this.state.direct}
-            placeholder="Direct Flight"
-            placeholderTextColor="blue"
-            underlineColorAndroid="transparent"
-          />
+          <CheckBox />
+          <TouchableOpacity style={styles.input}>
+            <Text style={styles.text}>Direct Flight</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -54,7 +51,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   text: {
-    fontSize: 18,
+    fontSize: 14,
     color: 'blue'
   },
   airLine: {
@@ -82,6 +79,8 @@ const styles = StyleSheet.create({
     borderWidth: 1
   },
   input: {
-    flex: 0.9
+    flex: 0.9,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
