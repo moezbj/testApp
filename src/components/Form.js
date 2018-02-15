@@ -7,10 +7,13 @@ export default class Form extends Component {
     super(props);
     this.state = {
       FylingFrom: '',
-      FylingTo: ''
+      FylingTo: '',
+      dateDeparture: new Date().toISOString().split('T')[0],
+      dateReturn: new Date().toISOString().split('T')[0]
     };
     this.onChangeTo = this.onChangeTo.bind(this);
     this.onChangeFrom = this.onChangeFrom.bind(this);
+    this.onDateChange = this.onDateChange.bind(this);
   }
   onChangeFrom(newText) {
     this.setState({
@@ -20,6 +23,11 @@ export default class Form extends Component {
   onChangeTo(newText) {
     this.setState({
       FylingTo: newText
+    });
+  }
+  onDateChange(newdate) {
+    this.setState({
+      date: newdate
     });
   }
 
@@ -45,27 +53,18 @@ export default class Form extends Component {
         />
 
         <View style={styles.date}>
-          <TouchableOpacity style={styles.depart} onPress={() => this.datePicker.onPressDate()}>
-            <DatePicker
-              ref={ref => (this.datePicker = ref)}
-              style={styles.datePicker}
-              date={this.state.date}
-              mode="date"
-              format="YYYY-MM-DD"
-              confirmBtnText="Confirm"
-              cancelBtnText="Cancel"
-              showIcon={false}
-              hideText
-              onDateChange={this.onDateChange}
-            />
+          <TouchableOpacity style={styles.depart} onPress={() => this.props.onPressDate()}>
+            <Text style={styles.textmenu}>Departure date</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.return} onPress={() => this.datePicker.onPressDate()} />
+
+          <TouchableOpacity style={styles.return} onPress={() => this.props.onPressDate()}>
+            <Text style={styles.textmenu}>Return Date</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
   }
 }
-
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#51868a'
@@ -75,6 +74,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#085373',
     margin: 5
   },
+  textmenu: {
+    fontSize: 16,
+    color: 'white'
+  },
   date: {
     flexDirection: 'row',
     justifyContent: 'space-between'
@@ -83,16 +86,16 @@ const styles = StyleSheet.create({
     flex: 40,
     backgroundColor: '#085373',
     margin: 5,
-    height: 40
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   return: {
     flex: 40,
     backgroundColor: '#085373',
     margin: 5,
-    height: 40
-  },
-  DatePicker: {
-    opacity: 0,
-    width: 0
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });

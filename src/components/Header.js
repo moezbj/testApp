@@ -31,19 +31,17 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     flex: 1
   },
+  centerFlex: {
+    flex: 1
+  },
   nav: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    height: 60
+    alignItems: 'center'
   },
   btn: {
-    alignItems: 'center',
     height: 20,
     width: 20,
     backgroundColor: 'red'
-  },
-  centerFlex: {
-    flex: 1
   }
 });

@@ -1,5 +1,18 @@
 import React from 'react';
-import { Text, View, Content, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import {
+  Text,
+  View,
+  Content,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  Dimensions,
+  KeyboardAvoidingView
+} from 'react-native';
+
+const { width, height } = Dimensions.get('window');
+
+import DatePicker from 'react-native-datepicker';
 import Header from './src/components/Header';
 import ButtonsMenu from './src/components/ButtonsMenu';
 import Form from './src/components/Form';
@@ -22,20 +35,37 @@ export default class App extends React.Component {
       isVisible: !this.state.isVisible
     });
   };
+  onPressDate = () => {
+    this.datePicker.onPressDate();
+  };
   render() {
     return (
       <View style={styles.container}>
-        <ScrollView>
-          <Header show={this.show} />
-          <ButtonsMenu style={styles.btn} />
-          <Form style={styles.input} />
-          <ClassType style={styles.class} />
-          <Extra style={styles.extra} />
-          <FlightType />
-          <Search style={styles.search} />
-          <PaymentLogo />
-        </ScrollView>
-        {this.state.isVisible && <NavBar />}
+        <KeyboardAvoidingView behavior="padding">
+          <View style={styles.main}>
+            <Header show={this.show} />
+            <ButtonsMenu style={styles.btn} />
+            <Form style={styles.input} onPressDate={this.onPressDate} />
+            <ClassType style={styles.class} />
+            <Extra style={styles.extra} />
+            <FlightType />
+            <Search style={styles.search} />
+            <PaymentLogo />
+          </View>
+          {this.state.isVisible && <NavBar />}
+          <View>
+            <DatePicker
+              ref={ref => (this.datePicker = ref)}
+              date={this.state.date}
+              mode="date"
+              format="YYYY-MM-DD"
+              confirmBtnText="Confirm"
+              cancelBtnText="Cancel"
+              showIcon
+              onDateChange={this.onDateChange}
+            />
+          </View>
+        </KeyboardAvoidingView>
       </View>
     );
   }
@@ -60,5 +90,9 @@ const styles = StyleSheet.create({
   },
   search: {
     padding: 5
+  },
+  main: {
+    width,
+    height
   }
 });
