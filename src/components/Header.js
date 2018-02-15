@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Button, Text, Image, TouchableOpacity } from 'react-native';
 import SvgUri from 'react-native-svg-uri';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/Entypo';
 
 import NavBar from './NavBar';
 export default class Header extends React.Component {
@@ -23,7 +23,7 @@ export default class Header extends React.Component {
             underlayColor={'orange'}
             onPress={this.props.show}
           >
-            <Icon name="list" color="white" size={20} />
+            <Icon name="menu" color="white" size={20} />
           </TouchableOpacity>
         </View>
       </View>

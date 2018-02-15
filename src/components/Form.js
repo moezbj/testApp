@@ -57,7 +57,7 @@ export default class Form extends Component {
             placeholderTextColor="white"
             underlineColorAndroid="transparent"
           />
-          <Icon name="plane" color="white" size={20} />
+          <Icon name="plane" color="white" size={20} style={styles.icon} />
         </View>
 
         <View style={styles.date}>
@@ -99,7 +99,10 @@ const styles = StyleSheet.create({
     margin: 5,
     height: 40,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    borderRadius: 6,
+    borderWidth: 1,
+    borderColor: '#085373'
   },
   return: {
     flexDirection: 'row',
@@ -108,12 +111,21 @@ const styles = StyleSheet.create({
     margin: 5,
     height: 40,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    borderRadius: 6,
+    borderWidth: 1,
+    borderColor: '#085373'
   },
   textInput: {
     backgroundColor: '#085373',
     flexDirection: 'row',
     alignItems: 'center',
-    margin: 10
+    margin: 10,
+    borderRadius: 6,
+    borderWidth: 1,
+    borderColor: '#085373'
+  },
+  icon: {
+    transform: [{ rotate: '180deg' }]
   }
 });
