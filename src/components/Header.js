@@ -23,7 +23,7 @@ export default class Header extends React.Component {
             underlayColor={'orange'}
             onPress={this.props.show}
           >
-            <Icon name="home" color="white" size={20} />
+            <Icon name="list" color="white" size={20} />
           </TouchableOpacity>
         </View>
       </View>
