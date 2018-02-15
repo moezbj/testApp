@@ -10,8 +10,8 @@ export default class Form extends Component {
     this.state = {
       FylingFrom: '',
       FylingTo: '',
-      dateDeparture: new Date().toISOString().split('T')[0],
-      dateReturn: new Date().toISOString().split('T')[0],
+      departureDate: 'Departure Date',
+      returnDate: 'Return Date',
       id1: 1,
       id2: 0
     };
@@ -60,16 +60,22 @@ export default class Form extends Component {
         <View style={styles.date}>
           <TouchableOpacity
             style={styles.depart}
-            onPress={() => this.props.onPressDate(this.state.id1)}
+            onPress={() => this.props.onPressDate(this.state.id1, this.props.isClicked)}
           >
-            <Text style={styles.textmenu}>{this.props.flightDate}</Text>
+            <Text style={styles.textmenu}>
+              {this.props.flightDate.length > 0 ? this.props.flightDate : this.state.departureDate}
+            </Text>
             <Icon name="calendar" color="white" size={20} />
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.return}
             onPress={() => this.props.onPressDate(this.state.id2)}
           >
-            <Text style={styles.textmenu}>{this.props.flightDateReturn}</Text>
+            <Text style={styles.textmenu}>
+              {this.props.flightDateReturn.length > 0
+                ? this.props.flightDateReturn
+                : this.state.returnDate}
+            </Text>
             <Icon name="calendar" color="white" size={20} />
           </TouchableOpacity>
         </View>

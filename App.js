@@ -32,7 +32,8 @@ export default class App extends React.Component {
       isVisible: false,
       color: false,
       flightDate: '',
-      flightDateReturn: ''
+      flightDateReturn: '',
+      isClicked: false
     };
     this.show = this.show.bind(this);
     this.close = this.close.bind(this);
@@ -72,36 +73,41 @@ export default class App extends React.Component {
       <TouchableWithoutFeedback onPress={this.close}>
         <View style={styles.container}>
           <ImageBackground source={require('./src/images/bg.jpg')} style={styles.container}>
-            <KeyboardAvoidingView behavior="padding">
-              <View style={styles.main}>
-                <Header show={this.show} color={this.state.color} />
-                <ButtonsMenu style={styles.btn} />
-                <Form
-                  style={styles.input}
-                  onPressDate={this.onPressDate}
-                  flightDate={this.state.flightDate}
-                  flightDateReturn={this.state.flightDateReturn}
-                />
-                <ClassType style={styles.class} />
-                <Extra style={styles.extra} />
-                <FlightType />
-                <Search style={styles.search} />
-                <PaymentLogo />
-              </View>
-              {this.state.isVisible && <NavBar />}
-              <View>
-                <DatePicker
-                  ref={ref => (this.datePicker = ref)}
-                  date={this.state.date}
-                  mode="date"
-                  format="YYYY-MM-DD"
-                  confirmBtnText="Confirm"
-                  cancelBtnText="Cancel"
-                  showIcon
-                  onDateChange={this.onDateChange}
-                />
-              </View>
-            </KeyboardAvoidingView>
+            <ScrollView>
+              <KeyboardAvoidingView behavior="padding">
+                <View style={styles.main}>
+                  <Header show={this.show} color={this.state.color} />
+                  <ButtonsMenu style={styles.btn} />
+                  <Form
+                    style={styles.input}
+                    onPressDate={this.onPressDate}
+                    flightDate={this.state.flightDate}
+                    flightDateReturn={this.state.flightDateReturn}
+                    isClicked={this.state.isClicked}
+                  />
+                  <ClassType style={styles.class} />
+                  <Extra style={styles.extra} />
+                  <FlightType />
+                  <Search style={styles.search} />
+                  <PaymentLogo />
+                </View>
+                {this.state.isVisible && <NavBar />}
+                <View>
+                  <DatePicker
+                    style={{ position: 'absolute', bottom: -200 }}
+                    ref={ref => (this.datePicker = ref)}
+                    date={this.state.date}
+                    mode="date"
+                    format="YYYY-MM-DD"
+                    confirmBtnText="Confirm"
+                    cancelBtnText="Cancel"
+                    showIcon={false}
+                    hideText
+                    onDateChange={this.onDateChange}
+                  />
+                </View>
+              </KeyboardAvoidingView>
+            </ScrollView>
           </ImageBackground>
         </View>
       </TouchableWithoutFeedback>
