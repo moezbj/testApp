@@ -11,11 +11,12 @@ export default class Form extends Component {
       FylingFrom: '',
       FylingTo: '',
       dateDeparture: new Date().toISOString().split('T')[0],
-      dateReturn: new Date().toISOString().split('T')[0]
+      dateReturn: new Date().toISOString().split('T')[0],
+      id1: 1,
+      id2: 0
     };
     this.onChangeTo = this.onChangeTo.bind(this);
     this.onChangeFrom = this.onChangeFrom.bind(this);
-    this.onDateChange = this.onDateChange.bind(this);
   }
   onChangeFrom(newText) {
     this.setState({
@@ -27,11 +28,7 @@ export default class Form extends Component {
       FylingTo: newText
     });
   }
-  onDateChange(newdate) {
-    this.setState({
-      date: newdate
-    });
-  }
+  componentWillReceiveProps = nextProps => {};
 
   render() {
     return (
@@ -61,12 +58,18 @@ export default class Form extends Component {
         </View>
 
         <View style={styles.date}>
-          <TouchableOpacity style={styles.depart} onPress={() => this.props.onPressDate()}>
-            <Text style={styles.textmenu}>Departure date</Text>
+          <TouchableOpacity
+            style={styles.depart}
+            onPress={() => this.props.onPressDate(this.state.id1)}
+          >
+            <Text style={styles.textmenu}>{this.props.flightDate}</Text>
             <Icon name="calendar" color="white" size={20} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.return} onPress={() => this.props.onPressDate()}>
-            <Text style={styles.textmenu}>Return Date</Text>
+          <TouchableOpacity
+            style={styles.return}
+            onPress={() => this.props.onPressDate(this.state.id2)}
+          >
+            <Text style={styles.textmenu}>{this.props.flightDateReturn}</Text>
             <Icon name="calendar" color="white" size={20} />
           </TouchableOpacity>
         </View>

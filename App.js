@@ -28,18 +28,40 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       isVisible: false,
-      color: false
+      color: false,
+      flightDate: '',
+      flightDateReturn: ''
     };
   }
   show = () => {
     this.setState({
       isVisible: !this.state.isVisible,
-      color: true
+      color: true,
+      id1: 0,
+      id2: 0
     });
   };
-  onPressDate = () => {
+
+  onPressDate = (id1, id2) => {
     this.datePicker.onPressDate();
+    this.setState({
+      id1,
+      id2
+    });
   };
+
+  onDateChange = newdate => {
+    if (this.state.id1 == 1) {
+      this.setState({
+        flightDate: newdate
+      });
+    } else {
+      this.setState({
+        flightDateReturn: newdate
+      });
+    }
+  };
+
   render() {
     return (
       <View style={styles.container}>
@@ -47,7 +69,13 @@ export default class App extends React.Component {
           <View style={styles.main}>
             <Header show={this.show} color={this.state.color} />
             <ButtonsMenu style={styles.btn} />
-            <Form style={styles.input} onPressDate={this.onPressDate} />
+            <Form
+              style={styles.input}
+              onPressDate={this.onPressDate}
+              flightDate={this.state.flightDate}
+              flightDateReturn={this.state.flightDateReturn}
+              id={this.state.id}
+            />
             <ClassType style={styles.class} />
             <Extra style={styles.extra} />
             <FlightType />

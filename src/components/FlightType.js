@@ -55,8 +55,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 18,
-    color: 'blue',
-    flex: 0.9
+    color: 'blue'
   },
   airLine: {
     flexDirection: 'row',
