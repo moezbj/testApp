@@ -84,10 +84,17 @@ export default class Form extends Component {
   }
 }
 const styles = StyleSheet.create({
+  container: {
+    marginBottom: 15
+  },
   input: {
     height: 40,
     backgroundColor: '#085373',
-    flex: 0.9
+    flex: 0.9,
+    borderRadius: 6,
+    borderWidth: 1,
+    borderColor: '#085373',
+    color: 'white'
   },
   textmenu: {
     fontSize: 16,
@@ -126,10 +133,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#085373',
     flexDirection: 'row',
     alignItems: 'center',
-    margin: 10,
+    margin: 5,
     borderRadius: 6,
     borderWidth: 1,
-    borderColor: '#085373'
+    borderColor: '#085373',
+    marginBottom: 15
   },
   icon: {
     transform: [{ rotate: '180deg' }]

@@ -2,14 +2,16 @@ import React from 'react';
 import {
   Text,
   View,
-  Content,
   StyleSheet,
   ScrollView,
   TouchableOpacity,
   TouchableWithoutFeedback,
   Dimensions,
   KeyboardAvoidingView,
-  ImageBackground
+  ImageBackground,
+  Animated,
+  Image,
+  Easing
 } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
@@ -37,12 +39,14 @@ export default class App extends React.Component {
     };
     this.show = this.show.bind(this);
     this.close = this.close.bind(this);
+    this.animatedValue = new Animated.Value(0);
   }
   show = () => {
     this.setState({
       isVisible: !this.state.isVisible,
       color: !this.state.color
     });
+    this.animate();
   };
   close() {
     this.setState({
@@ -68,11 +72,24 @@ export default class App extends React.Component {
       });
     }
   };
+  animate() {
+    this.animatedValue.setValue(0);
+    Animated.timing(this.animatedValue, {
+      toValue: 1,
+      duration: 2000,
+      easing: Easing.linear
+    }).start();
+  }
+
   render() {
+    const marginLeft = this.animatedValue.interpolate({
+      inputRange: [0, 1],
+      outputRange: [width * 2, width]
+    });
     return (
       <TouchableWithoutFeedback onPress={this.close}>
         <View style={styles.container}>
-          <ImageBackground source={require('./src/images/bg.jpg')} style={styles.container}>
+          <ImageBackground source={require('./src/images/bg.jpg')} style={styles.backgroundImage}>
             <ScrollView>
               <KeyboardAvoidingView behavior="padding">
                 <View style={styles.main}>
@@ -91,7 +108,17 @@ export default class App extends React.Component {
                   <Search style={styles.search} />
                   <PaymentLogo />
                 </View>
-                {this.state.isVisible && <NavBar />}
+                <View style={styles.anim}>
+                  {this.state.isVisible && (
+                    <Animated.View
+                      style={{
+                        marginLeft
+                      }}
+                    >
+                      <NavBar />
+                    </Animated.View>
+                  )}
+                </View>
                 <View>
                   <DatePicker
                     style={{ position: 'absolute', bottom: -200 }}
@@ -119,21 +146,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-  btn: {
-    padding: 5
-  },
-  input: {
-    padding: 5
-  },
-  class: {
-    padding: 5
-  },
-  extra: {
-    padding: 5
-  },
-  search: {
-    padding: 5
-  },
   main: {
     width,
     height
@@ -142,5 +154,10 @@ const styles = StyleSheet.create({
     flex: 1,
     width: null,
     height: null
+  },
+  anim: {
+    flex: 1,
+    height: height / 2 - 60,
+    position: 'absolute'
   }
 });

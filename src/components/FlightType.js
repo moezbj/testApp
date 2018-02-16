@@ -38,7 +38,7 @@ export default class FlightType extends React.Component {
         </View>
         <View style={styles.direct}>
           <CheckBox />
-          <TouchableOpacity style={styles.input}>
+          <TouchableOpacity style={styles.touch}>
             <Text style={styles.text}>Direct Flight</Text>
           </TouchableOpacity>
         </View>
@@ -48,7 +48,8 @@ export default class FlightType extends React.Component {
 }
 const styles = StyleSheet.create({
   main: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    marginBottom: 15
   },
   text: {
     fontSize: 14,
@@ -79,6 +80,12 @@ const styles = StyleSheet.create({
     borderWidth: 1
   },
   input: {
+    flex: 0.9,
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: 'blue'
+  },
+  touch: {
     flex: 0.9,
     justifyContent: 'center',
     alignItems: 'center'

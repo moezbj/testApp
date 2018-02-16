@@ -16,7 +16,7 @@ export default class ClassType extends React.Component {
   }
   render() {
     return (
-      <View>
+      <View style={styles.main}>
         <TouchableOpacity style={styles.btn}>
           <TextInput
             style={styles.input}
@@ -33,6 +33,9 @@ export default class ClassType extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  main: {
+    marginBottom: 15
+  },
   btn: {
     backgroundColor: '#085373',
     height: 40,
@@ -40,5 +43,8 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     borderWidth: 1,
     borderColor: '#085373'
+  },
+  input: {
+    color: 'white'
   }
 });
