@@ -76,7 +76,7 @@ export default class App extends React.Component {
     this.animatedValue.setValue(0);
     Animated.timing(this.animatedValue, {
       toValue: 1,
-      duration: 2000,
+      duration: 1000,
       easing: Easing.linear
     }).start();
   }
@@ -85,6 +85,10 @@ export default class App extends React.Component {
     const marginLeft = this.animatedValue.interpolate({
       inputRange: [0, 1],
       outputRange: [width * 2, width]
+    });
+    const marginRight = this.animatedValue.interpolate({
+      inputRange: [0, 1],
+      outputRange: [width / 2, width * 2]
     });
     return (
       <TouchableWithoutFeedback onPress={this.close}>
@@ -110,11 +114,7 @@ export default class App extends React.Component {
                 </View>
                 <View style={styles.anim}>
                   {this.state.isVisible && (
-                    <Animated.View
-                      style={{
-                        marginLeft
-                      }}
-                    >
+                    <Animated.View style={this.state.isVisible ? { marginLeft } : { marginRight }}>
                       <NavBar />
                     </Animated.View>
                   )}
