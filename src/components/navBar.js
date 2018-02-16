@@ -35,14 +35,7 @@ export default class NavBar extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#085373',
-    position: 'absolute',
-    top: 60,
-    right: 0,
-    width: width / 2,
-    height: height / 2 - 60,
-    borderTopColor: 'white',
-    borderTopWidth: 1
+    flex: 1
   },
   country: {
     flexDirection: 'row',

@@ -31,7 +31,6 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isVisible: false,
       color: false,
       flightDate: '',
       flightDateReturn: '',
@@ -40,18 +39,18 @@ export default class App extends React.Component {
     this.show = this.show.bind(this);
     this.close = this.close.bind(this);
     this.animatedValue = new Animated.Value(0);
+    this.animateClose = this.animateClose.bind(this);
+    this.isVisible = false;
   }
   show = () => {
+    this.isVisible ? this.animateClose() : this.animate();
     this.setState({
-      isVisible: !this.state.isVisible,
       color: !this.state.color
     });
-    this.animate();
+    this.isVisible = !this.isVisible;
   };
   close() {
-    this.setState({
-      isVisible: false
-    });
+    this.animateClose();
   }
   onPressDate = (id1, id2) => {
     this.datePicker.onPressDate();
@@ -73,23 +72,29 @@ export default class App extends React.Component {
     }
   };
   animate() {
-    this.animatedValue.setValue(0);
     Animated.timing(this.animatedValue, {
       toValue: 1,
       duration: 1000,
-      easing: Easing.linear
+      easing: Easing.linear,
+      useNativeDriver: true
+    }).start();
+  }
+
+  animateClose() {
+    Animated.timing(this.animatedValue, {
+      toValue: 0,
+      duration: 1000,
+      easing: Easing.linear,
+      useNativeDriver: true
     }).start();
   }
 
   render() {
     const marginLeft = this.animatedValue.interpolate({
       inputRange: [0, 1],
-      outputRange: [width * 2, width]
+      outputRange: [width, width / 2]
     });
-    const marginRight = this.animatedValue.interpolate({
-      inputRange: [0, 1],
-      outputRange: [width / 2, width * 2]
-    });
+
     return (
       <TouchableWithoutFeedback onPress={this.close}>
         <View style={styles.container}>
@@ -112,13 +117,17 @@ export default class App extends React.Component {
                   <Search style={styles.search} />
                   <PaymentLogo />
                 </View>
-                <View style={styles.anim}>
-                  {this.state.isVisible && (
-                    <Animated.View style={this.state.isVisible ? { marginLeft } : { marginRight }}>
-                      <NavBar />
-                    </Animated.View>
-                  )}
-                </View>
+                <Animated.View
+                  style={[
+                    styles.modal,
+                    {
+                      transform: [{ translateX: marginLeft }]
+                    }
+                  ]}
+                >
+                  <NavBar />
+                </Animated.View>
+
                 <View>
                   <DatePicker
                     style={{ position: 'absolute', bottom: -200 }}
@@ -155,9 +164,14 @@ const styles = StyleSheet.create({
     width: null,
     height: null
   },
-  anim: {
-    flex: 1,
+  modal: {
+    backgroundColor: '#085373',
+    position: 'absolute',
+    top: 60,
+    left: 0,
+    width: width / 2,
     height: height / 2 - 60,
-    position: 'absolute'
+    borderTopColor: 'white',
+    borderTopWidth: 1
   }
 });
